@@ -23,13 +23,17 @@ jobs:
       #    username: ${{ secrets.DOCKERHUB_USERNAME }}
       #    password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build image and export as tar
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
           push: false
           platforms: linux/amd64,linux/arm64
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}
+          output: type=tar,dest=./ai-promptchain-image.tar
+
+      - name: Upload image tar as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image-tar
+          path: ai-promptchain-image.tar
