@@ -23,14 +23,39 @@ jobs:
       #    username: ${{ secrets.DOCKERHUB_USERNAME }}
       #    password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build image and export as tar
+      - name: Build image and export image layout to local directory
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
           push: false
           platforms: linux/amd64,linux/arm64
-          output: type=tar,dest=./ai-promptchain-image.tar
+          output: type=local,dest=./output
+
+      - name: Create tar from exported output
+        run: |
+          if [ -d "./output" ]; then
+            tar -C ./output -cf ./ai-promptchain-image.tar .
+            ls -lh ./ai-promptchain-image.tar
+          else
+            echo "Export folder ./output not found"
+            find . -maxdepth 4 -type f -name "*.tar" -ls || true
+            exit 1
+          fi
+
+      - name: List workspace and confirm tar
+        run: |
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
+          pwd
+          ls -la
+          if [ -f "./ai-promptchain-image.tar" ]; then
+            echo "Tar found"
+            ls -lh ./ai-promptchain-image.tar
+          else
+            echo "Tar not found in workspace"
+            find . -maxdepth 4 -type f -name "*.tar" -ls || true
+            exit 1
+          fi
 
       - name: Upload image tar as artifact
         uses: actions/upload-artifact@v4
