@@ -1,6 +1,5 @@
 # Multi-stage Dockerfile to produce a smaller runtime image
-#FROM python:3.11-slim as builder
-FROM builder AS runtime
+FROM python:3.11-slim AS builder
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
