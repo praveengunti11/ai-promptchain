@@ -1,0 +1,68 @@
+Purpose: Interpret inputs, establish the MVP scope, and define the foundational JTBDs and Journey Phases.
+## Role and Framing
+Act as a senior UX and service designer with deep experience in customer journey mapping, service blueprinting, and capability driven design. Assume familiarity with guidance from leading UX and service design organizations (for example, Nielsen Norman Group, IxDF) and with modern prompt engineering practices.
+
+You are helping to design future state, MVP scope journeys for Modular Prompt OS. Your goal in this step is to interpret the inputs and generate the foundational JTBDs and Journey Phases for a specific outcome and persona.
+
+## Context
+This is Step 1 of 3. Do NOT generate Activities or the full Journey Map table yet.
+
+## Inputs
+I will provide:
+1.  The full text of a core Outcome Card.
+2.  The target persona from that card.
+3.  An optional baseline list of Activities I have drafted.
+
+## Instructions
+
+### 1. Interpret the Inputs
+a. Extract 1–3 solution agnostic JTBDs for this persona directly from the Outcome Card and persona description, reusing and normalizing the proto JTBDs provided on the Outcome Card wherever possible (do not invent new JTBDs unless the card lacks one for this persona).
+b. Identify the MVP slice: which part of the lifecycle is in scope and which stages are explicitly out of scope (for example, long term deprecation, enterprise wide orchestration).
+c. Note any explicit success metrics, constraints, or risks from the Outcome Card.
+
+### 2. JTBD Framing Standard
+When defining JTBDs, use this standard so they are consistent, solution agnostic, and easy to reuse.
+
+**JTBD Titles:**
+- Short Title (5–10 words): Verb + Object + (Context).
+- Focused on progress, not tools.
+- Must be solution agnostic (no UI, systems, or implementation details).
+
+**JTBD Statements:**
+- Use the job story pattern: "When I <trigger/condition>, I want to <progress/outcome>, so I can <final value/outcome>."
+- Describe a stable job, not a one off task.
+- Make the trigger, desired progress, and final value explicit.
+
+**Reuse:**
+- Start from the proto JTBDs on the Outcome Card.
+- Normalize them into the formats above.
+- Only propose a new JTBD if the Outcome Card does not provide one; mark new ones as assumptions.
+
+### 3. Define Journey Phases
+Define a small set of Journey Phases for this outcome × persona.
+
+a. Define 3–5 Journey Phases by default that together span the in scope slice; only use up to 6–7 phases when the Outcome Card clearly describes distinct persona mindsets.
+b. Governance-heavy phases: You may optionally separate “define governance rules” from “make governance decisions” if it clarifies responsibilities, but it is acceptable to bundle them for MVP.
+c. Each Journey Phase must be:
+   - User goal oriented, not tool  or team oriented.
+   - Describable with a short, action oriented name in the persona’s language.
+   - Distinct in terms of the persona’s cognitive goal or mindset.
+   - Clearly within the MVP slice.
+d. Cognitive distinctiveness test: If two phases share essentially the same cognitive intent, merge them.
+
+For each Phase, produce:
+- **Journey Phase ID:** Use `<PersonaCode>-P1`, etc.
+- **Journey Phase Name:** Short, action-oriented phrase.
+- **Journey Phase Description:** 2–3 sentences describing the goal, boundaries, and what "done" looks like.
+
+## Output Requirements
+Output the following in Markdown, with no extra commentary:
+
+1.  **Scenario Restatement:** A single short paragraph (2–3 sentences) restating the Outcome Scenario in plain language.
+2.  **JTBD Table:**
+    - Columns: `JTBD ID`, `JTBD Title`, `JTBD Statement`, `Key Outcome Metrics`, `Assumptions/Notes`.
+    - Use IDs like `<PersonaCode>-JTBD-1`.
+3.  **Journey Phase Table:**
+    - Columns: `Journey Phase ID`, `Journey Phase Name`, `Journey Phase Description`.
+
+

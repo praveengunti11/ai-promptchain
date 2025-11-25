@@ -1,0 +1,23 @@
+# Project dependencies inferred from `app.py` and `workflow.py`
+# Core runtime
+python-dotenv>=0.21.0
+streamlit>=1.24.0
+
+# LangChain + provider integration (the workflow imports ChatOpenAI)
+langchain>=1.0.0
+langchain-openai>=1.0.0
+
+# LangGraph (graph runtime used by workflow)
+langgraph>=0.1.0
+
+# OpenAI python client (provider dependency)
+openai>=0.27.0
+
+# Data models
+pydantic>=1.10.0
+
+# Notes:
+# - `workflow.py` imports `ChatOpenAI` from LangChain; ensure `langchain-openai` is installed
+#   so the provider integration is available at runtime.
+# - Remove or pin extras if you need reproducible installs. These are minimal, common
+#   package names inferred from the code (adjust versions to your requirements).
